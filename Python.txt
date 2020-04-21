@@ -1,0 +1,611 @@
+
+Python is a widely used high-level programming language for general purpose programming, created by Guido Van Rossum and first released in 1991.
+
+Python features a dynamic type system and automatic memory management and supports multiple programming paradigms, including OOP, imperative programming, functional programming and procedural styles.
+
+Python programs are composed of modules.
+Modules contain statements.
+Statements contain expressions.
+Expressions create and process objects.
+
+
+------------------
+Keywords in Python
+------------------
+	import keyword as key
+	print(key.kwlist)
+	len(key.kwlist) --> 33
+
+True  False  None  and  as  assert  break  class  continue  def  del  elif  else  except  finally  for  from  global
+if  import  in  is  lamnbda  nonlocal  not  or  pass  raise  return  try  while  with  yield
+
+
+------------------
+Datatypes in Python
+-------------------
+In python, we are not supposed to specify the type for the variables explicitly.
+Based on the value provided, the type will get assigned automatically.
+Hence python is a dynamically typed language.
+
+Each value in python has a datatype.
+Since everything is an object in python, so datatypes are actually classes and variables are the instances of these classes.
+
+int  float  bool  str  complex  list  tuple  set  dict  None
+
+All fundamental datatypes are immutable in python.
+If we change the content of these types then a new object will get created.
+
+
+----------------
+Python Opeartors
+----------------
+Arithmetic Opeartors   +  -  *  /  //  **  %
+Comparison Opeartors   >  <  >=  <=  ==  !=
+Logical Opeartors   and  or  not
+Bitwise Opeartors   &  |  ^  ~  >>  <<
+Assignment Opeartors   =  +=  -=  *=  /=  //=  %=  **=  &=  |=  ^=  >>=  <<=
+Special Opeartors   is  is not  in  in not
+Ternary Operators [on_true] if [expression] else [on_false] 
+
+
+-------------------
+Multiline Statement
+-------------------
+In python, end of a statement is marked by a newline character.
+But we can make a statement extend over multiple lines with the line continuation character(\).
+	a = 1+2+3+\
+		4+5+\
+		6+7+8+9
+
+Or we could also put multiple statements ina single line using semicolon(;).
+	a=1; b=2; c=3
+
+
+-------------------
+Docstring in Python
+-------------------
+Documentation string is a string that occurs as the first statement in a module, function, class or method.
+	def double(num):
+		'''function to double the value'''
+		return 2 * num
+
+In order to get the docstring value of a module or function, we use '__doc__' or help().
+	import math
+	print(math.__doc__)
+	print(math.sqrt.__doc__)
+	help(math)
+
+
+----------------
+Python Functions
+----------------
+A function is a group of related statements that perform a specific task.
+Functions help break our programs into smaller and modular chunks.
+
+	def <function_name>(<list_of_parameters>):
+		'''docstring'''
+		statements
+		return_statement(optional)
+	##END
+
+A function can optionally have a return statement to return a value from the function.
+The return statement is used to exit a function and go back to the place from where it was called.
+If there is no expression in the statement or return statement itself is not present inside a function,
+then the function will return the None object.
+
+Scope of a variable is the portion of a program where the variable is recognized.
+Parameters and variables defined inside a function is not visible form outside.
+Hence they have a local scope.
+
+Lifetime of a variable is the period throughout which the variable exists in the memory.
+The lifetime of a variable inside a function is as long as the function executes.
+They are destroyed once we return from the function.
+
+
+--------------------------------
+Functions with Default Arguments
+--------------------------------
+	def greet(name, msg):
+		print('hello',name,msg)
+	##END
+
+	def greet(name, msg="how are you?"):
+		print('hello',name,msg)
+	##END
+
+	def greet(*names):  # arbitrary arguments
+		for name in names:
+		print(names)
+	##END
+
+	greet('a','b','c','d')
+	greet('x','y','z'')
+
+
+-------------------
+Recursion in Python
+-------------------
+Recursion is the process of defining something in terms of itself.
+Any object in between them would be reflected recursively.
+Sequence generation is easier with recursion than using some iteration.
+
+	# factorial of a number using recursion
+	def factorial(number):
+		if (number == 1):
+			return 1
+		else:
+			return factorial(number - 1)
+	##END
+
+
+----------------
+range() function
+----------------
+We can generate a sequence of numbers using range() function.
+Signature of range() --> range(start, stop, step)
+step size is 1 by default.
+This function does not store all the values in memory, it would be inefficient, rather it generates the values at run-time.
+Also it cannot iterate over float objects.
+
+	print(range(0,10)) --> range(0,10)
+	print(range(0,10,2)) --> range(0,10,2)
+	print(list(range(0,10,2))) -->  [0,2,4,6,8]
+
+
+---------------------
+Python I/O and import
+---------------------
+We use the print() to output data to the standard output device or console.
+	print(*objects, sep='', end='\n', file=sys.stdout, flush=False)
+
+'objects' is the value to be printed.
+'sep' is used between the values.
+After all the values are printed, 'end' gets printed. The default value is newline.
+The 'file' is the object where the values are printed, and it's default value is sys.stdout
+
+	print(1,2,3,4) --> 1,2,3,4
+	print(1,2,3,4, sep'*') --> 1*2*3*4
+	print(1,2,3,4, sep'*', end='&&') --> 1*2*3*4&&
+
+	x = 12.3456789
+	print('x is %3.2f', %x) --> 12.35
+	print('x is %3.4f', %x) --> 12.3567
+
+'+' symbol does not insert space character implicitly.
+',' symbol does insert space character implicitly.
+
+In python, we have the input() to take the input from the end user dynamically.
+This function returns the string value, that can be converted into any required or desired format.
+
+	number = int(input('Enter a number'))
+	print(number)
+
+When our programs grows bigger, it is a good idea to break it into different modules.
+A module is a file containing python definitions and statements.
+These modules can be imported to another module or the interactive interpreter in python.
+
+In order to know about the default modules, use the following command.
+	import sys
+	sys.modules.keys()
+
+
+-----------------
+Python <int> type
+-----------------
+In python2, we have long datatype to represent very large integral values.
+But in python3, we have only int datatype to represent all sorts of numners.
+
+We can represent integer values in 4 formats.
+Binary Format --> 0b11 or 0B11
+Octal Format --> 0o11 or 0O11
+Hexadecimal Format --> 0x11 or 0X11
+Decimal Format --> 11
+
+
+------------------
+Python <bool> type
+------------------
+The only allowed values are True and False.
+Intenally python represents True as 1 and False as 0.
+
+bool(x)
+--> if x is <int> then, 0 means False and Non-zero means True.
+--> if x is <float> then, 0 means False and Non-zero floating-point number means True.
+--> if x is <str> then, if x is empty the result is False otherwise True.
+--> if x is <complex> then, only for (0+0j) the result is False, otherwise True.
+
+
+------------------
+Python <list> type
+------------------
+In python a list is created by placing all the elements inside a square brackets separated by commas.
+It can have any number of items and they may be of different types.
+Here insertion order is preserved.
+	l = []
+	l = [1,2,3]
+	l = ['python',[1,2],(3,4),5,6,{7,8}]
+
+Python allows negative indexing for its sequences.
+	ls = [1,2,3,4,5]
+	ls[0:3] --> [1,2,3]
+	ls[:] --> [1,2,3,4,5]
+	ls[:-1] --> [1,2,3,4]
+
+Lists are mutable which means their elements can be changed unlike strings or tuples.
+
+List Comprehension --> power = [2**x for x in range(10)] --> [1,2,4,8,16,32,64,128,256,512]
+
+append(-) --> adds an element to the end of the list.
+extend(-) --> adds all elements of a list to another list.
+insert(-,-) --> inserts an element at the specified index.
+remove(-) --> removes an element from the list.
+pop(-) --> removes and returns an element at the given index.
+clear() --> removes all the elements from the list.
+index(-) --> returns the index of the first matched item.
+count(-) --> returns the number of items passed as an argument.
+sort() --> sorts the list in the ascending order.
+reverse() --> reverses the insertion order of the list.
+copy() --> returns the shallow copy of the list.
+len(-) --> returns the length of the list.
+list(-) --> converts a collection into the list type.
+max(-) --> returns the maximum element from the list.
+mim(-) --> returns the manimum element from the list.
+sum(-) --> returns the sum of the elements of the list.
+
+
+-------------------
+Python <tuple> type
+-------------------
+Tuples are similar to a list. The only difference between the two is that we cannot change the elements of a tuple once it is assigned whereas in a list, elements can be changed.
+
+We generally use tuple for heterogeneous data and list for homogeneous data.
+Since tuples are immutable, elements can be used as key for a dictionary.
+If we have some data that does not change, implementing it as tuple will guarantee that it remains write-protected.
+Also due to the immutability of the tuples, iterating over them is slightly efficient.
+
+	tp = (1,2,3)  or tp = tuple([1,2,3])
+	tp = (1, "hello", 3.14)
+	a,b,c = tp --> unpacking of tuple is also possible.
+
+	tp = (1,) --> for a creating a single-value tuple, a trailing comma should be there.
+
+Elements of a tuple cannot be changed once it has been assigned but if the element is itself a mutable entity then it can be changed.
+	tp = (1,2,[3,5])
+	tp[2][1] = 4 --> (1,2,[3,4])
+
+Elements of a tuple cannot be deleted. It can only be deleted entirely.
+
+We can use + operator to combine two tuples. This is called concatenation.
+We can also multiply tuples with numbers in order to print that tuple for those number of times.
+	print((1,2,3)+(4,5,6))
+	print((1,2,3)*2)
+
+enumerate(-) --> adds counter to an iterable and returns it (the enumerate object).
+				 we can convert enumerate objects to list and tuple.
+		tup = ('a','b','c')
+		print(enumerate(tup)) --> <enumerate object at 0x00000292D10FE4C8>
+		print(list(enumerate(tup))) --> [(0, 'a'), (1, 'b'), (2, 'c')]
+
+len(-) --> returns the length of the list.
+max(-) --> returns the maximum element from the list.
+mim(-) --> returns the manimum element from the list.
+sum(-) --> returns the sum of the elements of the list.
+tuple(-) --> converts the collection into tuple.
+
+
+-----------------
+Python <str> type
+-----------------
+In python string is a sequence of unicode characters.
+Unicode was introduced to include every character in all languages and bring uniformity in encoding.
+
+Strings are immutable. This means that elements of a string cannot be changed once it has been assigned.
+We can simply reassign different strings to the same name.
+
+Also we cannot delete or remove the characters from the strings.
+But deleting the string entirely is possible using del keyword.
+
+encode() --> returns an encoded version of the string.
+swapcase() --> swaps cases, lower case becomes upper case and vice versa.
+upper() --> converts a string into upper case.
+splitlines() --> splits the string at line breaks and returns a list.
+replace() --> returns a string where a specified value is replaced with a specified value.
+lower() --> converts a string into lower case.
+islower() --> returns True if all characters in the string are lower case.
+isnumeric() --> returns True if all characters in the string are numeric.
+isspace() --> returns True if all characters in the string are whitespaces.
+isupper() --> returns True if all characters in the string are upper case.
+isdigit() --> returns True if all characters in the string are digits.
+isalpha() --> returns True if all characters in the string are in the alphabet.
+isalnum() --> returns True if all characters in the string are alphanumeric.
+index() --> searches the string for a specified value and returns the position of where it was found.
+endswith() --> returns true if the string ends with the specified value.
+count() --> returns the number of times a specified value occurs in a string.
+find() --> searches the string for a specified value and returns the position of where it was found.
+
+ljust(-,-) --> left justifies the string. first parameter is width and second is justification-character.
+rjust(-,-) --> right justifies the string. first parameter is width and second is justification-character.
+center(-,-) --> center justifies the string.
+
+txt = "qwerty"
+print(txt.center(10,'-'))  --> --qwerty--
+
+
+-----------------
+Python <set> type
+-----------------
+A set is an unordered collection of items.
+Every element is unique and must be immutable.
+However, the SET itself is mutable. We can add/remove/replace items from it.
+
+A set is created by placing all the elements inside {} separated by comma or by using the built-in function set().
+It can have any number of items ad they may be of different types.
+But it cannot have mutable elements like list, set or dict as its elements.
+	myset = {1,2,3}
+	myset = {'python', 10, 101.0}
+	myset = {1,1,2,3,4,3,2} --> {1,2,3,4}
+	set([1,2,3,2,3]) --> {1,2,3}
+
+Sets are mutable. But since they are unordered, indexing have no meaning.
+We cannot access or change an element of set using indexing or slicing.
+
+Creating an empty set is a bit tricky task.
+	a = set() print(type(a)) --> <class 'set'>
+	a = {} print(type(a)) --> <class 'dict'>
+
+SET Operations: A = {1,2,3,4,5} and B = {5,6,7,8,9}
+	print(A|B) --> {1,2,3,4,5,6,7,8}
+	print(A&B) --> {5}
+	print(A-B) --> {1,2,3,4}
+	print(B-A) --> {6,7,8,9}
+	print(A^B) --> {1,2,3,4,6,7,8,9}
+
+	A.union(B) --> {1,2,3,4,5,6,7,8}
+	A.intersection(B) --> {5}
+	A.difference(B) --> {1,2,3,4}
+	B.difference(A) --> {6,7,8,9}
+	A.symmetric_difference(B) --> {1,2,3,4,6,7,8,9}
+
+add(-)  clear()  pop(-)  discard(-)  remove(-)  copy()  isdisjoint(-)  issubset(-)
+
+
+------------------
+Python <dict> type
+------------------
+Python dictionary is an unordered collection of key:value pairs.
+Dictionaries are optimized to retrieve values when key is known.
+
+	dt = {} or dt = dict()
+	dt = {1:1,2:4,3:9,4:16,5:25}
+	dt = {'name':'jon','house':'targerion'}
+
+While values can be of any datatype and can repeat, keys must be of immutable type and must be unique.
+Dictionaries are mutable. We can add new items or change the value of existing items using the assignment.
+If the KEY is already present, value gets updated or else a new KEY:VALUE pair is addd.
+KEY can be used either inside square brackets or with get() method.
+The difference while using get() is that it returns None instead of KeyError, if the key is not found.
+
+clear() --> removes all items from the dictionary.
+keys() --> returns the collection of keys as list.
+values() --> returns the collection of values as list.
+
+Dictionary Comprehension is an elegant and concise way to create a new dictionary from an iterable.
+Dictionary Comprehension consists of an expression pair (K:V) followed by for statement inside {}.
+	square = {x:x*x for x in range(1,6)}
+	odd_square = {x:x*x for x in range(1,11) if x%2==1}
+
+While indexing is used with other container types to access values, dictionary uses KEYS.
+
+
+----------------------
+Python basic functions
+----------------------
+type(-) --> returns the type of variable.
+id(-) --> returns the address of the object.
+ord(-) --> returns the unicode value of the character.
+		ord('A') --> 65
+
+isinstance(-,-) --> returns True if the object is an instance of a class or subclass; otherwise False
+		isinstance(66,type(66)) --> True
+
+eval(-,-,-) --> parses the expression passed to this method and runs python expression within the program.
+		x = 1
+		print(eval('x + 1')) --> 2
+
+split(-,-) --> The split() method breaks up a string at the specified separator and returns a list of strings.
+		print("abc,def,ghi".split(',')) --> ['abc','def','ghi']
+
+join(-) --> convets iterables into string.
+		print("".join(['a','b','c'])) --> abc
+
+any(-) --> returns True if at least one element of an iterable is true, otherwise
+		   False if all elements are false or if an iterable is empty.
+		   any([0,0,0,0]) --> False
+		   any([]) --> False
+
+hash(-) --> returns the hash value of an object if it has one.
+abs(-) --> returns the absolute value of the given number. It accepts integer, floating numbers and complex numbers.
+ascii(-) --> returns a string containing printable representation of an object.
+chr(-) --> returns a character from a non-negative integer (represents unicode code point of the character).
+
+bin(-) --> returns the binary equivalent of the number.
+oct(-) --> returns the octal equivalent of the number.
+hex(-) --> returns the hexadecimal equivalent of the number.
+
+
+---------------
+lambda function
+---------------
+Anonymous functions are defined without name.
+The normal functions are defined by using def keyword whereas anonymous functions are defined by using lambda keyword.
+	lambda arg:expr
+
+Lambda Functions can have any number of arguments but inly one expression.
+Lambda Functions are used whenever function objects are required.
+	double = lambda x:x*2
+	f1 = lambda x,y:x+y   f1(2,3) --> 5
+	f2 = lambda msg:print(msg)   f2('abc') --> abc
+	power = lambda x,y : x**y
+	power(5,2) --> 25
+
+The lambdas can be used as a function shorthand that allows us to embed a function within the code.
+	L = [lambda x:x**2, lambda x:x**3, lambda x:x**4]
+	for f in L:
+		print(f(3))
+	##END
+
+	minimum = (lambda x,y: x if x < y else y)
+	minimum(101*99,102*98) --> 9996
+
+
+----------------------------------
+Functional Approach to Programming
+----------------------------------
+map() applies a function to all items in an input list.
+map(function_to_apply, list_of_inputs)
+	items = list(range(1,6))
+	squared =list(map(lambda x: x**2, items))
+
+	def square(x):
+		return x*x
+	##END
+
+	def double(x)
+		return x+x
+	##END
+
+	function = [square, double]
+
+	for i in range(6):
+		value = list(map(lambda x:x(i),function))
+		print(value)
+	##END
+
+filter() creates a list of elements for which a function returns True.
+	number_list = range(-5,5)
+	less_than_zero = list(filter(lambda x:x<0, number_list))
+	print(less_than_zero)
+ 
+reduce() is a really useful function for performing some computation on a list and returning the result.
+It applies a rolling computation to sequential pairs of values in a list.
+	product = 1
+	ls = list(range(1,5))
+	for num in ls:
+		product *= num
+	##END
+
+	from functools import reduce
+	product = reduce((lambda x,y:x*y),list(range(1,5)))
+
+zip() takes iterable (can be zero or more) makes iterator that aggregates elements based on the iterables passed.
+It returns an iterator of tuples.
+
+zip() returns an iterator of tuples based on the iterable objects.
+	if no parameter is passed, zip() returns an empty iterator.
+	if a single iterable is passed, zip() returns an iterator of 1-tuple.
+	if multiple iterables are passed, then ith iterables are grouped together.
+
+Iterator stops when shortest iterable is exhausted.
+	num = [1,2,3]
+	ls = ['one','two','three']
+	alpha = ['a','b']
+	print(zip()) --> <zip object at 0x00000205DA99F088>
+	print(list(zip(num))) --> [(1,), (2,), (3,)]
+	print(list(zip(num,ls))) --> [(1, 'one'), (2, 'two'), (3, 'three')]
+	print(list(zip(num,ls,alpha))) --> [(1, 'one', 'a'), (2, 'two', 'b')]
+
+The * operator can be used in conjunction with the zip() to unzip the list.
+	coordinate = ['x','y','z']
+	value = [3,4,5,0,9]
+	result = zip(coordinate, value)
+	print(list(result)) --> [('x', 3), ('y', 4), ('z', 5)]
+	c,v = zip(*result)
+	print(c,v) --> ('x','y','z') (3,4,5)
+
+
+---------------------
+Essential Python Tips
+---------------------
+Reversing a string:  	stg = "abcdef"
+						print("reversed string ",stg[::-1])
+
+Method Profile:		def function():
+						pass
+					##END
+					if __name__ == '__main__':
+						import profile
+						profile.run('function')
+					##END
+
+Generating Random Numbers:	import random
+							for i in range(10):
+								print(random.randint(1,101))
+							##END
+
+							import random as rd
+							print(rd.random()) --> generates a random value between 0 an 1
+							array = [rd.random(1,101) for i in range(10)]
+
+							import random as rd
+							items = [x**2 for x in range(1,6)]
+							print(items) --> [1,4,9,16,25]
+							rd.shuffle(items)
+							print(items) --> [16,4,1,25,9]
+
+Acessing CMD Line Argument:		from sys import argv
+								print(argv[0], argv[1], argv[2])
+
+								python test.py abc def --> test.py abc def
+								python test.py 'abc def' --> test.py abc def
+								python test.py "abc def" --> test.py abc def <not available>
+Usually space is separator between CMD line arguments.
+If our CMD line argument itself contains space then we should enclose it within double quotes.
+
+
+collections.Counter()
+A counter is a container that stores elements as dictionary keys, and their counts are stored as dictionary values.
+
+>>> from collections import Counter
+
+>>> myList = [1,1,2,3,4,5,3,2,3,4,2,1,2,3]
+>>> print Counter(myList)
+Counter({2: 4, 3: 4, 1: 3, 4: 2, 5: 1})
+
+>>> print Counter(myList).items()
+[(1, 3), (2, 4), (3, 4), (4, 2), (5, 1)]
+
+>>> print Counter(myList).keys()
+[1, 2, 3, 4, 5]
+
+>>> print Counter(myList).values()
+[3, 4, 4, 2, 1]
+
+An OrderedDict is a dictionary that remembers the order of the keys that were inserted first.
+If a new entry overwrites an existing entry, the original insertion position is left unchanged.
+
+>>> from collections import OrderedDict
+
+>>> ordinary_dictionary = {}
+>>> ordinary_dictionary['a'] = 1
+>>> ordinary_dictionary['b'] = 2
+>>> ordinary_dictionary['c'] = 3
+>>> ordinary_dictionary['d'] = 4
+>>> ordinary_dictionary['e'] = 5
+
+>>> print ordinary_dictionary
+{'a': 1, 'c': 3, 'b': 2, 'e': 5, 'd': 4}
+
+>>> ordered_dictionary = OrderedDict()
+>>> ordered_dictionary['a'] = 1
+>>> ordered_dictionary['b'] = 2
+>>> ordered_dictionary['c'] = 3
+>>> ordered_dictionary['d'] = 4
+>>> ordered_dictionary['e'] = 5
+
+>>> print ordered_dictionary
+OrderedDict([('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)])
+
+
+rpartition()
+lpartition()
+
